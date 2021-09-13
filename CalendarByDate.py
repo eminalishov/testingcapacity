@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 class CalendarByDate:
 
     def __init__(self, url):
-        self.url = url
-        self.content = requests.get(self.url).text
+        self.content = requests.get(url).text
 
     def get_info(self):
         soup = BeautifulSoup(self.content,features="html.parser")
@@ -36,7 +35,7 @@ class CalendarByDate:
         for bottom in bottoms:
             p = bottom.find('p').text
             bottomlist.append(p)
-            dict = {}
+        dict = {}
         for x in list(zip(toplist,bottomlist)):
             dict[x[0]] = x[1]
         return dict
